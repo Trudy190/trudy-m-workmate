@@ -32,7 +32,7 @@ function ChatPage() {
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const [, addChat] = useChats();
-  const [, setStats] = useSessionStats();
+  const [stats, setStats] = useSessionStats();
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -118,7 +118,7 @@ function ChatPage() {
           ),
         );
       }
-      setStats((s => ({ chatsCompleted: (s?.chatsCompleted ?? 0) + 1 }))(undefined as never) as never);
+      setStats({ chatsCompleted: stats.chatsCompleted + 1 });
     } catch (e) {
       if ((e as Error).name === "AbortError") return;
       const msg = e instanceof Error ? e.message : "Something went wrong";

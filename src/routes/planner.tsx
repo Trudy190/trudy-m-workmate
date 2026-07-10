@@ -30,7 +30,7 @@ export const Route = createFileRoute("/planner")({
 function PlannerPage() {
   const gen = useServerFn(generatePlan);
   const [, addPlan] = usePlans();
-  const [, setStats] = useSessionStats();
+  const [stats, setStats] = useSessionStats();
   const [goals, setGoals] = useState("");
   const [scope, setScope] = useState<"day" | "week">("day");
   const [hours, setHours] = useState("09:00 – 17:00");
@@ -48,7 +48,7 @@ function PlannerPage() {
     try {
       const r = await gen({ data: { goals, scope, workingHours: hours, notes } });
       setPlan(r.plan);
-      setStats((s => ({ plansCreated: (s?.plansCreated ?? 0) + 1 }))(undefined as never) as never);
+      setStats({ plansCreated: stats.plansCreated + 1 });
       toast.success("Plan generated");
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Failed to generate plan");

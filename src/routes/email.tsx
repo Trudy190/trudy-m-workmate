@@ -41,7 +41,7 @@ const tones = ["Formal", "Friendly", "Informal", "Professional", "Persuasive", "
 function EmailPage() {
   const gen = useServerFn(generateEmail);
   const [, addEmail] = useEmails();
-  const [, setStats] = useSessionStats();
+  const [stats, setStats] = useSessionStats();
 
   const [purpose, setPurpose] = useState("");
   const [audience, setAudience] = useState("Client");
@@ -64,7 +64,7 @@ function EmailPage() {
       });
       setSubject(result.subject);
       setBody(result.body);
-      setStats((s => ({ emailsGenerated: (s?.emailsGenerated ?? 0) + 1 }))(undefined as never) as never);
+      setStats({ emailsGenerated: stats.emailsGenerated + 1 });
       toast.success("Email drafted");
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Failed to generate email");

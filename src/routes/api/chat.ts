@@ -15,10 +15,11 @@ export const Route = createFileRoute("/api/chat")({
         if (!key) return new Response("Missing LOVABLE_API_KEY", { status: 500 });
 
         const gateway = createLovableAiGateway(key);
+        const modelMessages = await convertToModelMessages(messages);
         const result = streamText({
           model: gateway(DEFAULT_MODEL),
           system: CHAT_SYSTEM,
-          messages: convertToModelMessages(messages),
+          messages: modelMessages,
         });
         return result.toUIMessageStreamResponse({ originalMessages: messages });
       },

@@ -90,10 +90,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         property: "og:description",
         content:
-          "Draft emails, plan your day, and chat with TrudyM — a privacy-first AI workplace assistant.",
+          "TrudyM AI helps professionals draft emails, plan tasks, and get workplace assistance — privacy-first, no signup, all data stays on your device.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "TrudyM AI — Workplace Productivity Assistant" },
+      { name: "twitter:description", content: "TrudyM AI helps professionals draft emails, plan tasks, and get workplace assistance — privacy-first, no signup, all data stays on your device." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/9ad4ba44-4c32-45a0-91df-982fbc4f492c/id-preview-55955670--9f526cde-453c-4855-953d-3aefdd41613a.lovable.app-1783728009501.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/9ad4ba44-4c32-45a0-91df-982fbc4f492c/id-preview-55955670--9f526cde-453c-4855-953d-3aefdd41613a.lovable.app-1783728009501.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
